@@ -1,0 +1,27 @@
+version : '3'
+services :
+
+
+  DB1 :
+    image : mysql
+    restart : always
+    environment :
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: qwerty
+    ports:
+      - 3306:3306
+    
+  6th_container :
+  #カレントディレクトリ中にあるDockerfileを参照してビルドする
+    build : ./mysite_5
+    ports :
+      - 8080:80
+    volumes : 
+      - /Users/watanabeyuki/Desktop/vscode etc/work_place:/app_dir
+    environment :
+      6TH_CONTAINER_DB_PASSWORD :  aaaaa    
+    depends_on :
+      - DB1
+    links:
+      - DB1:DB1
+    tty: true
