@@ -14,12 +14,13 @@ services :
   6th_container :
   #カレントディレクトリ中にあるDockerfileを参照してビルドする
     build : ./mysite_5
-    ports :
-      - 8080:80
+    ports :                 # 公開ポート
+      - 8080:80             # 外部公開ポート番号：コンテナのポート番号
     volumes : 
-      - /Users/watanabeyuki/Desktop/vscode etc/work_place:/app_dir
+      - .:/app_dir
     environment :
-      6TH_CONTAINER_DB_PASSWORD :  aaaaa    
+      6TH_CONTAINER_DB_PASSWORD :  aaaaa 
+      #コンテナ起動の指定はDB1を優先。ただし、立ち上がら位までは待ってくれるとは限らない。 
     depends_on :
       - DB1
     links:
