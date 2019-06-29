@@ -26,7 +26,7 @@ SECRET_KEY = 'sbr7jgswcq^0ng^z@bz*_+ud9-z-r=_(nz+8n=wgh_q)26w&te'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.0.1','0.0.0.0']
+ALLOWED_HOSTS = ['localhost','0.0.0.0']
 
 
 # アプリケーションの定義
@@ -82,16 +82,14 @@ WSGI_APPLICATION = 'mysite_5.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        #データベースの名前を設定しないとうまく動かない！
-        'NAME':'DB1',
         'USER':'root',
-        'PASSWORD':'qwerty',
-        # HOST指定ってなんだ？
-        'HOST':'DB1',
         'PORT':'3306',
     }
 }
-
+if DEBUG:
+    DATABASES['default']['HOST']='DB1'
+    DATABASES['default']['NAME']='DB1'
+    DATABASES['default']['PASSWORD']='qwerty'
 
 # パスワードの有効化
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

@@ -3,19 +3,22 @@ services :
 
 
   DB1 :
-    image : mysql
+    image : mysql:5.6
     restart : always
     environment :
-      MYSQL_USER: root
+      MYSQL_DATABASE: DB1
       MYSQL_ROOT_PASSWORD: qwerty
-    ports:
-      - 3306:3306
+    expose:
+      - '3306'
     
   6th_container :
+  
   #カレントディレクトリ中にあるDockerfileを参照してビルドする
     build : ./mysite_5
     ports :                 # 公開ポート
       - 8080:80             # 外部公開ポート番号：コンテナのポート番号
+    command : >
+      pip install -r requirements.txt
     volumes : 
       - .:/app_dir
     environment :
