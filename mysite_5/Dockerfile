@@ -11,12 +11,13 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir /app_dir
 WORKDIR /app_dir/mysite_5
 
+
 #現在のディレクトリ内部のファイルをコンテナにコピー
 ADD . /app_dir
 
 #自分でこのファイルと同ディレクトリにつくった
 #requirements_5.txtを参照してインストールする？
 #なんか知らんけど、以下のコマンドは手動で実行しないと参照が失敗する
-#RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
                                              

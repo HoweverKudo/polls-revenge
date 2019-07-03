@@ -11,14 +11,14 @@ services :
     expose:
       - '3306'
     
-  6th_container :
+  7th_container :
   
   #カレントディレクトリ中にあるDockerfileを参照してビルドする
     build : ./mysite_5
     ports :                 # 公開ポート
-      - 8080:80             # 外部公開ポート番号：コンテナのポート番号
+      - 8000:8000             # 外部公開ポート番号：コンテナのポート番号（存在していないと接続できない）
     command : >
-      pip install -r requirements.txt
+      bash -c "pip install -r requirements.txt && python manage.py runserver 0.0.0.0:8000 && bash"
     volumes : 
       - .:/app_dir
     environment :

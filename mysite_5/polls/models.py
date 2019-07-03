@@ -1,5 +1,6 @@
 from django.db import models
 
+#タイムゾーンの取り扱いをするためのモジュール
 import datetime
 from django.db import models
 from django.utils import timezone
