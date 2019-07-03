@@ -17,8 +17,8 @@ services :
     build : ./mysite_5
     ports :                 # 公開ポート
       - 8000:8000             # 外部公開ポート番号：コンテナのポート番号（存在していないと接続できない）
-    command : >
-      bash -c "pip install -r requirements.txt && python manage.py runserver 0.0.0.0:8000 && bash"
+      #bashを打っておけばとりあえず動かしたままにできる
+    command : bash -c "pip install -r requirements.txt && python manage.py runserver 0.0.0.0:8000 && bash"
     volumes : 
       - .:/app_dir
     environment :
