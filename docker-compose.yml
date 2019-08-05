@@ -2,30 +2,33 @@ version : '3'
 services :
 
 
-  DB1 :
-    image : mysql:5.6
+  db:
+    image : "mysql:5.6"
     restart : always
     environment :
       MYSQL_DATABASE: DB1
       MYSQL_ROOT_PASSWORD: qwerty
     expose:
-      - '3306'
+      - "3306"
     
   7th_container :
   
   #カレントディレクトリ中にあるDockerfileを参照してビルドする
     build : ./mysite_5
     ports :                 # 公開ポート
-      - 8000:8000             # 外部公開ポート番号：コンテナのポート番号（存在していないと接続できない）
-      #bashを打っておけばとりあえず動かしたままにできる
-    command : bash -c "pip install -r requirements.txt && python manage.py runserver 0.0.0.0:8000 && bash"
+      - "8000:8000"             # 外部公開ポート番号：コンテナのポート番号（存在していないと接続できない）
+      # bashを打っておけばとりあえず動かしたままにできる
+      # 再現性を意識して実行するcommandを記述すること
+    command : bash -c "pip install -r mysite_5/requirements.txt && python mysite_5/manage.py migrate && python mysite_5/manage.py runserver 0.0.0.0:8000"
+    #command : bash -c "pip install -r mysite_5/requirements.txt && python mysite_5/manage.py migrate && python mysite_5/manage.py createsuperuser && python mysite_5/manage.py runserver 0.0.0.0:8000"
+    #command : bash
     volumes : 
-      - .:/app_dir
+      - ".:/usr/src/app"
     environment :
       6TH_CONTAINER_DB_PASSWORD :  aaaaa 
-      #コンテナ起動の指定はDB1を優先。ただし、立ち上がら位までは待ってくれるとは限らない。 
+      #コンテナ起動の指定はdbを優先。ただし、立ち上がら位までは待ってくれるとは限らない。 
     depends_on :
-      - DB1
+      - db
     links:
-      - DB1:DB1
+      - db:db
     tty: true
