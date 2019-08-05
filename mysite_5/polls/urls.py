@@ -1,12 +1,11 @@
-#pathを設定したいからpathモジュールを使う？
 from django.urls import path
 
-#このファイルと同じ場所（階層）からviws.pyの中身を参照してそのまま利用する：インポートをすればよい
 from . import views
 
+app_name = 'polls'
 urlpatterns = [
-    #URLについて、polls/の下に何もないときは、views.pyを参照
-        #views.py内で定義したindex関数を呼び出す
-        #name=で、このURLパターンに名前をつけて実際のURLを取得できる
-    path('', views.index, name='index'),
+    path('', views.IndexView.as_view(), name='index'),
+    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
+    path('<int:question_id>/vote/', views.vote, name='vote'),
 ]

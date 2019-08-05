@@ -1,0 +1,20 @@
+GNU nano 2.0.6           File: base_site.html                              
+
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin')  }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Polls Administration</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+
+
+
+
+
+                              [ Read 9 lines ]
+^G Get Help ^O WriteOut ^R Read File^Y Prev Page^K Cut Text ^C Cur Pos
+^X Exit     ^J Justify  ^W Where Is ^V Next Page^U UnCut Tex^T To Spell

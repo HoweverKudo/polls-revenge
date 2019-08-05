@@ -1,0 +1,8 @@
+from polls.models import Question, Choice 
+from django.utils import timezone
+q = Question(question_txt="What's up?", pub_date=timezone.now())
+q.save()
+q = Question.objects.get(pk=1)
+q.choice_set.all()
+q.choice_set.create(choice_txt='Not much', votes=0)
+q.choice_set.create(choice_txt='The sky', votes=0)
