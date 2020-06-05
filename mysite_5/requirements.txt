@@ -1,6 +1,6 @@
 
 #requirements.txtがないとDockerfileからコンテナを作れない？
-Django==2.1
+Django==2.2.13
 flask
 redis
 psycopg2==2.7.5
